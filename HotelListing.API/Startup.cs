@@ -1,3 +1,5 @@
+using AutoMapper;
+using HotelListing.API.Configuration;
 using HotelListing.API.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +38,7 @@ namespace HotelListing.API
             {
                 options.AddPolicy("AllowAll", b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             });
+            services.AddAutoMapper(typeof(MapperConfig));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
