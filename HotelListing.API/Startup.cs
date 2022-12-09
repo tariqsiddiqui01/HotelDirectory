@@ -41,8 +41,9 @@ namespace HotelListing.API
                 options.AddPolicy("AllowAll", b => b.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             });
             services.AddAutoMapper(typeof(MapperConfig));
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<ICountriesRepository, CountriesRepository>();
-
+            services.AddScoped<IHotelsRepository, HotelsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

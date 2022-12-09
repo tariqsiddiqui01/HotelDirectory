@@ -28,16 +28,16 @@ namespace HotelListing.API.Controllers
 
         // GET: api/Countries
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Country>>> GetCountries()
+        public async Task<ActionResult<IEnumerable<CountryDto>>> GetCountries()
         {
             var countries = await _countriesRepo.GetAllAsync();
-            var records = _mapper.Map<IList<GetCountryDto>>(countries);
+            var records = _mapper.Map<List<GetCountryDto>>(countries);
             return Ok(records);
         }
 
         // GET: api/Countries/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Country>> GetCountry(int id)
+        public async Task<ActionResult<CountryDto>> GetCountry(int id)
         {
             var country = await _countriesRepo.GetCountryDetails(id);
 
@@ -82,7 +82,7 @@ namespace HotelListing.API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok("Successfully updated!");
         }
 
         // POST: api/Countries
