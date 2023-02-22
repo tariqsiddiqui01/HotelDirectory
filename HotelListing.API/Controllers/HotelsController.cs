@@ -6,6 +6,7 @@ using HotelListing.API.Data;
 using HotelListing.API.Contract;
 using AutoMapper;
 using HotelListing.API.Dto.Hotel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelListing.API.Controllers
 {
@@ -50,6 +51,7 @@ namespace HotelListing.API.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
+        
         public async Task<IActionResult> PutHotel(int id, UpdateHotelDto updatehotelDto)
         {
             if (id != updatehotelDto.Id)
@@ -96,6 +98,7 @@ namespace HotelListing.API.Controllers
 
         // DELETE: api/Hotels/5
         [HttpDelete("{id}")]
+        [Authorize(Roles ="admin")]
         public async Task<ActionResult<Hotel>> DeleteHotel(int id)
         {
             var hotel = await _repository.GetByIdAsync(id);
