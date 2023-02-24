@@ -51,7 +51,9 @@ namespace HotelListing.API
             services.AddScoped<IHotelsRepository, HotelsRepository>();
             services.AddIdentityCore<APIUser>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddTokenProvider<DataProtectorTokenProvider<APIUser>>("HotelListingAPI")
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
             services.AddScoped<IAuthManager, AuthManager>();
             services.AddAuthentication(options =>
             {
